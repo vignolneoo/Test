@@ -1,0 +1,4 @@
+import tkinter
+fen=TK()
+fen.geometry('400x400')
+fen.mainloop
