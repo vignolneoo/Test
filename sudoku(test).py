@@ -4,6 +4,8 @@ from tkinter import messagebox
 import random
 import time
 ''' Matrice sudoku random '''
+
+start = time.time()
 P = [
   [7,8,4,  1,5,9,  3,2,6],
   [5,3,9,  6,7,2,  8,4,1],
@@ -83,10 +85,7 @@ def table(caneva):
     cells={}
     entry_equipes=[]  
     for i in range(1,10): #Rows
-        for j in range(1,10): #Columns
-            print("valeur de ", i)
-            print("valeur de ", j)
-
+        for j in range(1,10): #Columns           
             b=entryy(canevas,i,j)        
             entry_equipes.append(b)
 
@@ -119,7 +118,6 @@ table(canevas)
 sudoku.configure(width=400,height=400,bg="#FFA07A")
 
 
-start = time.time()
 end = time.time()
 print("Time to run: {}".format(end - start))
 
