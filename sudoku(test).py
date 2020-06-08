@@ -2,8 +2,22 @@ import tkinter as tk
 import numpy as np
 from tkinter import messagebox
 import random
-
+import time
 ''' Matrice sudoku random '''
+P = [
+  [7,8,4,  1,5,9,  3,2,6],
+  [5,3,9,  6,7,2,  8,4,1],
+  [6,1,2,  4,3,8,  7,5,9],
+
+  [9,2,8,  7,1,5,  4,6,3],
+  [3,5,7,  8,4,6,  1,9,2],
+  [4,6,1,  9,2,3,  5,8,7],
+
+  [8,7,6,  3,9,4,  2,1,5],
+  [2,4,3,  5,6,1,  9,7,8],
+  [1,9,5,  2,8,7,  6,3,4]
+]
+     
 
 
 sudoku=tk.Tk()
@@ -29,12 +43,25 @@ En cours
 class entryy:
     def __init__(self, master,i,j):
         entry_text = tk.StringVar()
-        
-        
+        P = [
+        [7,8,4,  1,5,9,  3,2,6],
+        [5,3,9,  6,7,2,  8,4,1],
+        [6,1,2,  4,3,8,  7,5,9],
+
+        [9,2,8,  7,1,5,  4,6,3],
+        [3,5,7,  8,4,6,  1,9,2],
+        [4,6,1,  9,2,3,  5,8,7],
+
+        [8,7,6,  3,9,4,  2,1,5],
+        [2,4,3,  5,6,1,  9,7,8],
+        [1,9,5,  2,8,7,  6,3,4]
+        ]
+
+        M=np.matrix(P)          
         entry_widget = tk.Entry(master, width = 20, textvariable = entry_text) 
         entry_widget.grid(row=i, column=j)
-        s=random.randint(1,9)
-        entry_widget.insert(s,str(s))
+        
+        entry_widget.insert(M[i-1,j-1],int(M[i-1,j-1]))
         def integer(entry_text):
             try:
                 int(entry_text.get())
@@ -55,8 +82,11 @@ class entryy:
 def table(caneva):
     cells={}
     entry_equipes=[]  
-    for i in range(9): #Rows
-        for j in range(9): #Columns
+    for i in range(1,10): #Rows
+        for j in range(1,10): #Columns
+            print("valeur de ", i)
+            print("valeur de ", j)
+
             b=entryy(canevas,i,j)        
             entry_equipes.append(b)
 
@@ -65,12 +95,12 @@ def table(caneva):
 
 def about():
     messagebox.showinfo('Developper','Developped by Abdenour DELLIL')
-
+"""
 def shuffle():
     x = list(9)
     random.shuffle(9)
     return x
-
+"""
 sudoku_check=tk.Button(sudoku, text='check game')
 sudoku_check.pack(padx=0,pady=15,fill='x')
 
@@ -87,4 +117,10 @@ sudoku_exit.pack(side="bottom",padx=0,pady=17,fill="x")
 table(canevas)
 
 sudoku.configure(width=400,height=400,bg="#FFA07A")
+
+
+start = time.time()
+end = time.time()
+print("Time to run: {}".format(end - start))
+
 sudoku.mainloop()
